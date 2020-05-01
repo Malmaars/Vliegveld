@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] Itemlist;
+    public GameObject[] Bags;
     System.Random rnd;
     // Start is called before the first frame update
     void Start()
@@ -25,11 +26,13 @@ public class Spawner : MonoBehaviour
 
     public void SpawnItems()
     {
+        int boxnmbr = rnd.Next(0, 3);
+        GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         for(int i = 0; i < 10; i++)
         {
             int objectnmbr = rnd.Next(0, 3);
             Debug.Log(objectnmbr);
-            Instantiate(Itemlist[objectnmbr], new Vector3(0, 0, 0), new Quaternion(0,0,0,0));
+            GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-2f,2f), Random.Range(-1f, 1f), 0), new Quaternion(0,0,0,0), Bag.transform);
         }
     }
 }
