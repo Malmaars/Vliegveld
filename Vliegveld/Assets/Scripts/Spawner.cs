@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    StateManager Manager;
+
     public GameObject[] Itemlist;
     public GameObject[] Bags;
     private GameObject currentBag;
@@ -12,17 +14,19 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         rnd = new System.Random();
+        Manager = FindObjectOfType<StateManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(currentBag != null)
-        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, 0.02f), currentBag.transform.position.z);
+        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, Time.deltaTime * 2), currentBag.transform.position.z);
     }
 
     private void OnMouseDown()
     {
+        if(Manager.isThereABag == false)
         SpawnItems();
     }
 
@@ -30,14 +34,15 @@ public class Spawner : MonoBehaviour
     {
         int boxnmbr = rnd.Next(0, 3);
         GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-        for(int i = 0; i <= 5; i++)
+        for(int i = 0; i < 5; i++)
         {
             int objectnmbr = rnd.Next(0, 3);
             Debug.Log(objectnmbr);
-            GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-20f,20f), Random.Range(-10f, 10f), 0), new Quaternion(0,0,0,0), Bag.transform);
+            GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-4f,4f), Random.Range(-2f, 2f), 0), new Quaternion(0,0,0,0), Bag.transform);
         }
-        Bag.transform.position = new Vector3(0, 120, 0);
+        Bag.transform.position = new Vector3(9.5f, 15, 0);
         currentBag = Bag;
-        
+        Manager.CurrentBag = currentBag;
+        Manager.isThereABag = true;
     }
 }
