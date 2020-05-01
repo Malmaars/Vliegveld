@@ -27,12 +27,13 @@ public class Spawner : MonoBehaviour
     public void SpawnItems()
     {
         int boxnmbr = rnd.Next(0, 3);
-        GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 8, 0), new Quaternion(0, 0, 0, 0));
         for(int i = 0; i < 10; i++)
         {
             int objectnmbr = rnd.Next(0, 3);
             Debug.Log(objectnmbr);
             GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-2f,2f), Random.Range(-1f, 1f), 0), new Quaternion(0,0,0,0), Bag.transform);
         }
+        Bag.transform.position = 
     }
 }
