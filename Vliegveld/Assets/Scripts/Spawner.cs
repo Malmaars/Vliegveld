@@ -34,6 +34,6 @@ public class Spawner : MonoBehaviour
             Debug.Log(objectnmbr);
             GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-2f,2f), Random.Range(-1f, 1f), 0), new Quaternion(0,0,0,0), Bag.transform);
         }
-        Bag.transform.position = 
+        
     }
 }
