@@ -44,9 +44,8 @@ public class VraagKnop : Button
 
     private void OnMouseUp()
     {
-        clicked = true;
 
-        if (voorwerpInBakje != null)
+        if (voorwerpInBakje != null && badBool == false)
         {
             Vraagtext = voorwerpInBakje.GetComponent<Text>().text;
             AntwoordText = voorwerpInBakje.GetChild(0).GetComponent<Text>().text;
@@ -56,6 +55,7 @@ public class VraagKnop : Button
 
             Transform theirChildTemp = theirSpeech.transform.GetChild(0);
             theirChildTemp.gameObject.GetComponent<TextMeshPro>().text = AntwoordText;
+            clicked = true;
         }
 
         if (voorwerpInBakje == null)
@@ -65,7 +65,14 @@ public class VraagKnop : Button
                 Transform cantTemp = CantDoThat.transform.GetChild(0);
                 cantTemp.gameObject.GetComponent<TextMeshPro>().text = "I can only ask about one thing at a time";
             }
+
+            if(Bakje.transform.childCount == 0)
+            {
+                Transform cantTemp = CantDoThat.transform.GetChild(0);
+                cantTemp.gameObject.GetComponent<TextMeshPro>().text = "I don't have anything to ask about";
+            }
             badBool = true;
+            clicked = true;
         }
     }
 

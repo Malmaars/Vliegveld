@@ -21,16 +21,16 @@ public class SpeechMovement : MonoBehaviour
     void Start()
     {
         Vraag = FindObjectOfType<VraagKnop>();
-        moveSpeed = Time.deltaTime * 5;
         littlePoofBack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        moveSpeed = Time.deltaTime * 7;
         moveWay = Vraag.clicked;
 
-        if (Vraag.voorwerpInBakje != null && AmITheCant == false && Vraag.badBool == false)
+        if (AmITheCant == false && Vraag.badBool == false)
         {
             if (moveWay == true)
             {
@@ -55,7 +55,7 @@ public class SpeechMovement : MonoBehaviour
                     }
                 }
 
-                if (waitTillStop > 2)
+                if (waitTillStop > 3)
                 {
                     waitTillStop = 0;
                     Vraag.clicked = false;
@@ -88,7 +88,7 @@ public class SpeechMovement : MonoBehaviour
             }
         }
 
-        if(AmITheCant == true && Vraag.badBool == true && Vraag.voorwerpInBakje == null)
+        if(AmITheCant == true && Vraag.badBool == true)
         {
             if (moveWay == true)
             {

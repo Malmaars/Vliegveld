@@ -447,16 +447,46 @@ MonoBehaviour:
   notPressed: {fileID: 21300000, guid: cd790a85b9f66a345905d2118bc371a8, type: 3}
   pressed: {fileID: 21300000, guid: 47e8b3597d8b2c0419b7b15d8b672a24, type: 3}
   Itemlist:
-  - {fileID: 3032900329980952906, guid: 1a07ec444d798cc46ae5c54ef0f92d75, type: 3}
-  - {fileID: 228296713237549364, guid: 2c7b45bac79e6834c8527b258378eafa, type: 3}
-  - {fileID: 395138995560081538, guid: c51cb7e22064cf748acdec4148af5e37, type: 3}
+  - {fileID: 1050387477132347509, guid: f3597c37355071a4990286d5ec8a6bad, type: 3}
+  - {fileID: 3026575622558844544, guid: 7a5fe8f1421cefa4c935bc8258a096cd, type: 3}
+  - {fileID: 5602894919247792088, guid: 0f1c54cded0098744809c87ac7a9ecaf, type: 3}
+  - {fileID: 6188103878582231730, guid: 4037312bdc2f6bf41ae8c25d4e710e1d, type: 3}
+  - {fileID: 2228145031234372322, guid: ca074ce7a9b022d488ea46c93bee253c, type: 3}
+  - {fileID: 6159631214357059556, guid: 481e6a48e2f2e2242a554db24b0dab7e, type: 3}
+  - {fileID: 478627971162448392, guid: 37cc15d2dc3bd7540a1d76705b655296, type: 3}
+  - {fileID: 1259030969175416148, guid: aff1c3f2d85621b4cb7386ff7baf4a02, type: 3}
+  - {fileID: 6406147507534751307, guid: c027af4fe3717fa49a21646faacd069e, type: 3}
+  - {fileID: 788431055724353329, guid: 8c751151e49127545a967d911234ab9a, type: 3}
+  - {fileID: 7338270688025833176, guid: a7443969accb3f849895211cacdb129c, type: 3}
+  - {fileID: 1000605049149395994, guid: d3a09539808412642a99e47bf29aec41, type: 3}
+  - {fileID: 1171198472491409449, guid: ee21b2ad6b0e8b14f8f745cac5624b64, type: 3}
+  - {fileID: 3646821145878088859, guid: 05c564272036614438fb150a4eaac8a8, type: 3}
+  - {fileID: 2935681080426796662, guid: 9f6979c8548be47498548c7ec2ea888b, type: 3}
+  - {fileID: 3777567346937493536, guid: 49ea627055d4d9a49a9334f49ff35592, type: 3}
+  - {fileID: 7538707384070598605, guid: 532a32633a823514295af54134fe600d, type: 3}
+  - {fileID: 6011675662836579495, guid: 5208f435b044d5d4da275d05db083708, type: 3}
+  - {fileID: 8179033552498996935, guid: d458da807dcf687438166165ab968e03, type: 3}
+  - {fileID: 8704427040740556039, guid: bd6cef4e2993fc54b82f9e5a23de8b3f, type: 3}
+  - {fileID: 4533803328297020721, guid: a1a85eda6d1fc2e48a1e64fed5642c91, type: 3}
+  - {fileID: 4805867445283735388, guid: 2cb0f2b2f7782c24bb91c6d262fd4b7d, type: 3}
+  - {fileID: 2040721042125222750, guid: 4f3ed631bb9abb84aa42caa8b8820af9, type: 3}
+  - {fileID: 1419302269549763287, guid: 1f54b2222b8168e48935ab941a63f24a, type: 3}
+  - {fileID: 8650162190472475062, guid: 453456e0946273f4b8c9c2a3fcfd6903, type: 3}
   Bags:
   - {fileID: 4073491871829542674, guid: 0b4b2be5d8c10494895b1633358510d8, type: 3}
   - {fileID: 2854421566924120357, guid: 47ea5f2655490ad42a1f70756e68d0d9, type: 3}
   - {fileID: 2619123571310360736, guid: bf22026556897de4d8266dbd6540d3db, type: 3}
   - {fileID: 8105164548059613329, guid: 98b0869de8af44b4c9f98325a3c7c64b, type: 3}
   - {fileID: 985849805699318150, guid: 29770cf42ed600846adfbdc1197b081e, type: 3}
+  People:
+  - {fileID: 4731349697261364295, guid: 146ecd23189731e47bab6bc80f0e2e1b, type: 3}
+  - {fileID: 1499676013763343069, guid: 1607e47b99bfe624b99365c8ca36abaa, type: 3}
+  - {fileID: 5789752692780076980, guid: e2789018f258a9a48b7ca5b330532282, type: 3}
+  - {fileID: 3776649566913942280, guid: 5726df606e0215545a704713cdef2bec, type: 3}
+  - {fileID: 5501507716253055856, guid: 76932db454df10249a84b5d4e47a6140, type: 3}
+  currentPerson: {fileID: 0}
   clientTimer: 0
+  itemTimer: 0
 --- !u!1 &387396368
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +826,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 88c51e0cf8c0f124db7c04906eb9e71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -993,7 +1023,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1231,7 +1261,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1463,7 +1493,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
 --- !u!1 &1508081824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1711,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: a7df98aeef0038d459fbaffce33d32d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1912,7 +1942,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
 --- !u!1 &1930075837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1977,15 @@ MonoBehaviour:
   chosen: 0
   isItActuallyGoodTho: 0
   isThereABag: 0
+  bagPersonBool: 0
   CurrentBag: {fileID: 0}
+  currentPerson: {fileID: 0}
+  Ondergrond: {fileID: 2801870}
+  Vliegveld: {fileID: 1527350202}
+  askButton: {fileID: 387396368}
+  goodButton: {fileID: 1146544050}
+  badButton: {fileID: 888508973}
+  Bakje: {fileID: 29907979}
 --- !u!4 &1930075839
 Transform:
   m_ObjectHideFlags: 0
@@ -2167,7 +2205,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
 --- !u!1 &2101325025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2262,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
