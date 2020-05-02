@@ -8,18 +8,21 @@ public class VraagKnop : Button
 {
     public GameObject Bakje;
 
-    private Transform voorwerpInBakje;
+    public Transform voorwerpInBakje;
     private string Vraagtext;
     private string AntwoordText;
 
+    public bool badBool;
+
     public GameObject mySpeech;
     public GameObject theirSpeech;
+    public GameObject CantDoThat;
 
     public bool clicked = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,6 +44,8 @@ public class VraagKnop : Button
 
     private void OnMouseUp()
     {
+        clicked = true;
+
         if (voorwerpInBakje != null)
         {
             Vraagtext = voorwerpInBakje.GetComponent<Text>().text;
@@ -51,8 +56,16 @@ public class VraagKnop : Button
 
             Transform theirChildTemp = theirSpeech.transform.GetChild(0);
             theirChildTemp.gameObject.GetComponent<TextMeshPro>().text = AntwoordText;
+        }
 
-            clicked = true;
+        if (voorwerpInBakje == null)
+        {
+            if (Bakje.transform.childCount > 1)
+            {
+                Transform cantTemp = CantDoThat.transform.GetChild(0);
+                cantTemp.gameObject.GetComponent<TextMeshPro>().text = "I can only ask about one thing at a time";
+            }
+            badBool = true;
         }
     }
 

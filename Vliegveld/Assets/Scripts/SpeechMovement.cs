@@ -10,6 +10,8 @@ public class SpeechMovement : MonoBehaviour
     public bool littlePoofForw = false;
     public bool littlePoofBack = true;
 
+    public bool AmITheCant;
+
     public float waitForTime = 0;
     public float howlong;
 
@@ -28,57 +30,119 @@ public class SpeechMovement : MonoBehaviour
     {
         moveWay = Vraag.clicked;
 
-        if(moveWay == true)
+        if (Vraag.voorwerpInBakje != null && AmITheCant == false && Vraag.badBool == false)
         {
-            waitForTime += Time.deltaTime;
-
-            if (waitForTime > howlong)
+            if (moveWay == true)
             {
-                if (littlePoofForw == false)
+                waitForTime += Time.deltaTime;
+
+                if (waitForTime > howlong)
+                {
+                    if (littlePoofForw == false)
+                    {
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
+                        if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                        {
+                            littlePoofForw = true;
+                        }
+                    }
+
+                    if (littlePoofForw == true)
+                    {
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 90, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 15, moveSpeed), 1);
+                        littlePoofBack = false;
+                        waitTillStop += Time.deltaTime;
+                    }
+                }
+
+                if (waitTillStop > 2)
+                {
+                    waitTillStop = 0;
+                    Vraag.clicked = false;
+                }
+            }
+
+            if (moveWay == false)
+            {
+                if (littlePoofBack == false)
                 {
                     this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
                     if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
                     {
-                        littlePoofForw = true;
+                        littlePoofBack = true;
                     }
                 }
 
-                if (littlePoofForw == true)
+                if (littlePoofBack == true)
                 {
-                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 90, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 15, moveSpeed), 1);
-                    littlePoofBack = false;
-                    waitTillStop += Time.deltaTime;
-                }
-            }
+                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 0, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 0, moveSpeed), 1);
 
-            if(waitTillStop > 2)
-            {
-                waitTillStop = 0;
-                Vraag.clicked = false;
+                    if (this.transform.localScale.x < 0.3f)
+                    {
+                        this.transform.localScale = new Vector3(0, 0, 1);
+                        littlePoofForw = false;
+                        waitForTime = 0;
+                        waitTillStop = 0;
+                    }
+                }
             }
         }
 
-        if(moveWay == false)
+        if(AmITheCant == true && Vraag.badBool == true && Vraag.voorwerpInBakje == null)
         {
-            if(littlePoofBack == false)
+            if (moveWay == true)
             {
-                this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
-                if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                waitForTime += Time.deltaTime;
+
+                if (waitForTime > howlong)
                 {
-                    littlePoofBack = true;
+                    if (littlePoofForw == false)
+                    {
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
+                        if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                        {
+                            littlePoofForw = true;
+                        }
+                    }
+
+                    if (littlePoofForw == true)
+                    {
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 90, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 15, moveSpeed), 1);
+                        littlePoofBack = false;
+                        waitTillStop += Time.deltaTime;
+                    }
+                }
+
+                if (waitTillStop > 2)
+                {
+                    waitTillStop = 0;
+                    Vraag.clicked = false;
                 }
             }
 
-            if (littlePoofBack == true)
+            if (moveWay == false)
             {
-                this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 0, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 0, moveSpeed), 1);
-
-                if(this.transform.localScale.x < 0.3f)
+                if (littlePoofBack == false)
                 {
-                    this.transform.localScale = new Vector3(0, 0, 1);
-                    littlePoofForw = false;
-                    waitForTime = 0;
-                    waitTillStop = 0;
+                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
+                    if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                    {
+                        littlePoofBack = true;
+                    }
+                }
+
+                if (littlePoofBack == true)
+                {
+                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 0, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 0, moveSpeed), 1);
+
+                    if (this.transform.localScale.x < 0.3f)
+                    {
+                        this.transform.localScale = new Vector3(0, 0, 1);
+                        littlePoofForw = false;
+                        Vraag.badBool = false;
+                        waitForTime = 0;
+                        waitTillStop = 0;
+                    }
                 }
             }
         }

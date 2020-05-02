@@ -24,7 +24,7 @@ public class Spawner : Button
     {
         Press();
         if(currentBag != null)
-        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 3, Time.deltaTime * 2), currentBag.transform.position.z);
+        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, Time.deltaTime * 2), currentBag.transform.position.z);
 
         if(currentBag == null)
         {
@@ -46,15 +46,15 @@ public class Spawner : Button
 
     public void SpawnItems()
     {
-        int boxnmbr = rnd.Next(0, 3);
+        int boxnmbr = rnd.Next(0, Bags.Length);
         GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         for(int i = 0; i < 5; i++)
         {
-            int objectnmbr = rnd.Next(0, 3);
+            int objectnmbr = rnd.Next(0, Itemlist.Length);
             Debug.Log(objectnmbr);
-            GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(-4f,4f), Random.Range(-2f, 2f), 0), new Quaternion(0,0,0,0), Bag.transform);
+            GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(7f,14.5f), Random.Range(1.5f, 6.5f), 0), new Quaternion(0,0,0,0), Bag.transform);
         }
-        Bag.transform.position = new Vector3(9.5f, 15, 0);
+        Bag.transform.position = new Vector3(0, 12, 0);
         currentBag = Bag;
         Manager.CurrentBag = currentBag;
         Manager.isThereABag = true;
