@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class VraagKnop : MonoBehaviour
+public class VraagKnop : Button
 {
     public GameObject Bakje;
 
@@ -14,6 +14,8 @@ public class VraagKnop : MonoBehaviour
 
     public GameObject mySpeech;
     public GameObject theirSpeech;
+
+    public bool clicked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,11 @@ public class VraagKnop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Press();
+
         if (Bakje.transform.childCount != 1)
         {
             voorwerpInBakje = null;
-            return;
             //Ja dat mag dus niet
         }
 
@@ -48,6 +51,13 @@ public class VraagKnop : MonoBehaviour
 
             Transform theirChildTemp = theirSpeech.transform.GetChild(0);
             theirChildTemp.gameObject.GetComponent<TextMeshPro>().text = AntwoordText;
+
+            clicked = true;
         }
+    }
+
+    private void OnMouseDrag()
+    {
+        Clicky();
     }
 }

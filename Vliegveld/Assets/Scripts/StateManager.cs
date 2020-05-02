@@ -21,7 +21,7 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (chosen == true)
+        if (chosen == true && CurrentBag != null)
         {
             if (accept == true)
             {

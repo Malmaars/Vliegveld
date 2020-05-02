@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : Button
 {
     StateManager Manager;
 
@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     public GameObject[] Bags;
     private GameObject currentBag;
     System.Random rnd;
+
+    public float clientTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +22,26 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Press();
         if(currentBag != null)
-        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, Time.deltaTime * 2), currentBag.transform.position.z);
+        currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 3, Time.deltaTime * 2), currentBag.transform.position.z);
+
+        if(currentBag == null)
+        {
+            clientTimer += Time.deltaTime;
+
+            if (clientTimer > 2)
+            {
+                clientTimer = 0;
+                SpawnItems();
+            }
+        }
     }
 
     private void OnMouseDown()
     {
-        if(Manager.isThereABag == false)
-        SpawnItems();
+    //    if(Manager.isThereABag == false)
+    //    SpawnItems();
     }
 
     public void SpawnItems()
@@ -44,5 +58,10 @@ public class Spawner : MonoBehaviour
         currentBag = Bag;
         Manager.CurrentBag = currentBag;
         Manager.isThereABag = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        Clicky();
     }
 }
