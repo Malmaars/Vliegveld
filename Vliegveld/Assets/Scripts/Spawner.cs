@@ -27,12 +27,24 @@ public class Spawner : Button
     void Update()
     {
         Press();
-        if (currentPerson != null)
-            currentPerson.transform.position = new Vector3(Mathf.Lerp(currentPerson.transform.position.x, 0, Time.deltaTime * 2), currentPerson.transform.position.y, currentPerson.transform.position.z);
+        if (currentPerson != null && Manager.bagPersonBool == false)
+            currentPerson.transform.position = new Vector3(Mathf.Lerp(currentPerson.transform.position.x, 0, Time.deltaTime * 5), currentPerson.transform.position.y, currentPerson.transform.position.z);
 
         if (currentBag != null)
+        {
             currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, Time.deltaTime * 2), currentBag.transform.position.z);
 
+            if (currentBag.transform.position.y < 2)
+            {
+                Transform[] ItemsInBag;
+                ItemsInBag = new Transform[currentBag.transform.childCount-1];
+                foreach (Transform item in ItemsInBag)
+                {
+                    if(item != null)
+                    item.transform.GetComponent<dragAndDrop>().enabled = true;
+                }
+            }
+        }
         if (currentPerson == null)
         {
             clientTimer += Time.deltaTime;
@@ -71,6 +83,7 @@ public class Spawner : Button
             int objectnmbr = rnd.Next(0, Itemlist.Length);
             Debug.Log(objectnmbr);
             GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(8.5f, 13f), Random.Range(3f, 5f), 0), new Quaternion(0, 0, 0, 0), Bag.transform);
+            temp.transform.GetComponent<dragAndDrop>().enabled = false;
         }
         Bag.transform.position = new Vector3(0, 12, 0);
         currentBag = Bag;

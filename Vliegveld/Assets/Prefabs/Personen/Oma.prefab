@@ -98,3 +98,4 @@ MonoBehaviour:
   Idle2: {fileID: 21300000, guid: 6d9db11edc33cdd4b9ec15f3c5356dbb, type: 3}
   Nervous: {fileID: 21300000, guid: 6e67fd8c630974f4eaeb5c2eb740953f, type: 3}
   Clock: 0
+  switcheroo: 0

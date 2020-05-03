@@ -16,6 +16,18 @@ public class dragAndDrop : MonoBehaviour
     {
         if(dragging == false)
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+        if (this.transform.position.x > 16.5f)
+            transform.position = new Vector3(16.5f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.x < 2.5f)
+            transform.position = new Vector3(2.5f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.y > 8.5f)
+            transform.position = new Vector3(transform.position.x, 8.5f, transform.position.z);
+
+        if (this.transform.position.y < -8.5f)
+            transform.position = new Vector3(transform.position.x, -8.5f, transform.position.z);
     }
 
     private void OnMouseDrag()

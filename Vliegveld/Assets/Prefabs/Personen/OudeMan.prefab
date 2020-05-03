@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f383d4b8f409b144cb10c382c997b0af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e135b53b48da5094a83f064f721867a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125b2a6aa1ab90e40aed9f52bfcec975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Idle1: {fileID: 21300000, guid: f383d4b8f409b144cb10c382c997b0af, type: 3}
-  Idle2: {fileID: 21300000, guid: 2c26bd21ffd1ff8489f45016168bed1c, type: 3}
-  Nervous: {fileID: 21300000, guid: 164beb4a91764bf4eb1b3f3f137a6766, type: 3}
+  Idle1: {fileID: 21300000, guid: e135b53b48da5094a83f064f721867a0, type: 3}
+  Idle2: {fileID: 21300000, guid: bb3f5d74ab520574289040386789072d, type: 3}
+  Nervous: {fileID: 21300000, guid: d286f44634903a949aa02aeb8390749d, type: 3}
   Clock: 0
+  switcheroo: 0
