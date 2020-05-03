@@ -6,6 +6,8 @@ using TMPro;
 
 public class VraagKnop : Button
 {
+    StateManager Manager;
+
     public GameObject Bakje;
 
     public Transform voorwerpInBakje;
@@ -22,7 +24,7 @@ public class VraagKnop : Button
     // Start is called before the first frame update
     void Start()
     {
-
+        Manager = FindObjectOfType<StateManager>();
     }
 
     // Update is called once per frame
@@ -56,6 +58,12 @@ public class VraagKnop : Button
             Transform theirChildTemp = theirSpeech.transform.GetChild(0);
             theirChildTemp.gameObject.GetComponent<TextMeshPro>().text = AntwoordText;
             clicked = true;
+
+            if(voorwerpInBakje.gameObject.tag == "Bad")
+            {
+                if (Manager.currentPerson != null)
+                    Manager.currentPerson.transform.GetComponent<Persoon>().NervousBool = true;
+            }
         }
 
         if (voorwerpInBakje == null)

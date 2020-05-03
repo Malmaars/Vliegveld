@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpeechMovement : MonoBehaviour
 {
     VraagKnop Vraag;
+    StateManager Manager;
 
     public bool moveWay = false;
     public bool littlePoofForw = false;
@@ -21,13 +22,14 @@ public class SpeechMovement : MonoBehaviour
     void Start()
     {
         Vraag = FindObjectOfType<VraagKnop>();
+        Manager = FindObjectOfType<StateManager>();
         littlePoofBack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = Time.deltaTime * 7;
+        moveSpeed = Time.deltaTime * 5;
         moveWay = Vraag.clicked;
 
         if (AmITheCant == false && Vraag.badBool == false)
@@ -40,8 +42,8 @@ public class SpeechMovement : MonoBehaviour
                 {
                     if (littlePoofForw == false)
                     {
-                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
-                        if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1.3f, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1.3f, moveSpeed), 1);
+                        if (this.transform.localScale.x > 1.2f && this.transform.localScale.y > 1.2f)
                         {
                             littlePoofForw = true;
                         }
@@ -49,7 +51,7 @@ public class SpeechMovement : MonoBehaviour
 
                     if (littlePoofForw == true)
                     {
-                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 90, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 15, moveSpeed), 1);
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1, moveSpeed), 1);
                         littlePoofBack = false;
                         waitTillStop += Time.deltaTime;
                     }
@@ -66,8 +68,8 @@ public class SpeechMovement : MonoBehaviour
             {
                 if (littlePoofBack == false)
                 {
-                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
-                    if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1.3f, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1.3f ,moveSpeed), 1);
+                    if (this.transform.localScale.x > 1.2f && this.transform.localScale.y > 1.2f)
                     {
                         littlePoofBack = true;
                     }
@@ -77,8 +79,11 @@ public class SpeechMovement : MonoBehaviour
                 {
                     this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 0, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 0, moveSpeed), 1);
 
-                    if (this.transform.localScale.x < 0.3f)
+                    if (this.transform.localScale.x < 0.1f)
                     {
+                        if(Manager.currentPerson != null)
+                        Manager.currentPerson.transform.GetComponent<Persoon>().NervousBool = false;
+
                         this.transform.localScale = new Vector3(0, 0, 1);
                         littlePoofForw = false;
                         waitForTime = 0;
@@ -98,8 +103,8 @@ public class SpeechMovement : MonoBehaviour
                 {
                     if (littlePoofForw == false)
                     {
-                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
-                        if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1.3f, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1.3f, moveSpeed), 1);
+                        if (this.transform.localScale.x > 1.2f && this.transform.localScale.y > 1.2f)
                         {
                             littlePoofForw = true;
                         }
@@ -107,7 +112,7 @@ public class SpeechMovement : MonoBehaviour
 
                     if (littlePoofForw == true)
                     {
-                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 90, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 15, moveSpeed), 1);
+                        this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1, moveSpeed), 1);
                         littlePoofBack = false;
                         waitTillStop += Time.deltaTime;
                     }
@@ -124,8 +129,8 @@ public class SpeechMovement : MonoBehaviour
             {
                 if (littlePoofBack == false)
                 {
-                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 108, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 18, moveSpeed), 1);
-                    if (this.transform.localScale.x > 105 && this.transform.localScale.y > 16)
+                    this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 1.3f, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 1.3f, moveSpeed), 1);
+                    if (this.transform.localScale.x > 1.2f && this.transform.localScale.y > 1.2f)
                     {
                         littlePoofBack = true;
                     }
@@ -135,7 +140,7 @@ public class SpeechMovement : MonoBehaviour
                 {
                     this.transform.localScale = new Vector3(Mathf.Lerp(this.transform.localScale.x, 0, moveSpeed), Mathf.Lerp(this.transform.localScale.y, 0, moveSpeed), 1);
 
-                    if (this.transform.localScale.x < 0.3f)
+                    if (this.transform.localScale.x < 0.1f)
                     {
                         this.transform.localScale = new Vector3(0, 0, 1);
                         littlePoofForw = false;

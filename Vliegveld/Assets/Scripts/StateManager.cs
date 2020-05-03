@@ -12,6 +12,9 @@ public class StateManager : MonoBehaviour
     public bool isThereABag = false;
     public bool bagPersonBool = false;
 
+    public bool planeExplodes = false;
+    public int points = 0;
+
     public GameObject CurrentBag;
     public GameObject currentPerson;
 
