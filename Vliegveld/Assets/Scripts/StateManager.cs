@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StateManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class StateManager : MonoBehaviour
     public GameObject goodButton;
     public GameObject badButton;
     public GameObject Bakje;
+
+    public GameObject PointCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +80,8 @@ public class StateManager : MonoBehaviour
                 zetTerugNaarNormaal();
             }
         }
+
+        PointCount.GetComponent<TextMeshPro>().text = "Points : " + points;
     }
 
     public void beweegMensenOfzo()

@@ -7,6 +7,7 @@ public class Spawner : Button
     StateManager Manager;
 
     public GameObject[] Itemlist;
+    public List<GameObject> currentItems;
     public GameObject[] Bags;
     public GameObject[] People;
     private GameObject currentBag;
@@ -75,15 +76,18 @@ public class Spawner : Button
 
     public void SpawnItems()
     {
+
         Manager.zetTerugNaarNormaal();
         int boxnmbr = rnd.Next(0, Bags.Length);
         GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        currentItems.Clear();
         for (int i = 0; i < 5; i++)
         {
             int objectnmbr = rnd.Next(0, Itemlist.Length);
-            Debug.Log(objectnmbr);
+            //Debug.Log(objectnmbr);
             GameObject temp = Instantiate(Itemlist[objectnmbr], new Vector3(Random.Range(8.5f, 13f), Random.Range(3f, 5f), 0), new Quaternion(0, 0, 0, 0), Bag.transform);
             temp.transform.GetComponent<dragAndDrop>().enabled = false;
+            currentItems.Add(temp);
         }
         Bag.transform.position = new Vector3(0, 12, 0);
         currentBag = Bag;

@@ -16,27 +16,6 @@ public class dragAndDrop : MonoBehaviour
         anim = Poof.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (dragging == false)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        }
-
-        if (this.transform.position.x > 16.5f)
-            transform.position = new Vector3(16.5f, transform.position.y, transform.position.z);
-
-        if (this.transform.position.x < 2.5f)
-            transform.position = new Vector3(2.5f, transform.position.y, transform.position.z);
-
-        if (this.transform.position.y > 8.5f)
-            transform.position = new Vector3(transform.position.x, 8.5f, transform.position.z);
-
-        if (this.transform.position.y < -8.5f)
-            transform.position = new Vector3(transform.position.x, -8.5f, transform.position.z);
-    }
-
     private void OnMouseDown()
     {
         anim.Play("PoofLeegAnim");
@@ -49,6 +28,18 @@ public class dragAndDrop : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         transform.localScale = new Vector3(2, 2, 1);
         transform.GetComponent<SpriteRenderer>().sortingOrder = 9;
+
+        if (this.transform.position.x > 16f)
+            transform.position = new Vector3(16f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.x < 3f)
+            transform.position = new Vector3(3f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.y > 8f)
+            transform.position = new Vector3(transform.position.x, 8f, transform.position.z);
+
+        if (this.transform.position.y < -8f)
+            transform.position = new Vector3(transform.position.x, -8f, transform.position.z);
     }
 
     private void OnMouseUp()
@@ -57,5 +48,28 @@ public class dragAndDrop : MonoBehaviour
         transform.localScale = new Vector3(1.5f, 1.5f, 1);
         transform.GetComponent<SpriteRenderer>().sortingOrder = -4;
         anim.SetTrigger("DoThePoof");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (dragging == false)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
+
+        if (this.transform.position.x > 16f)
+            transform.position = new Vector3(16f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.x < 3f)
+            transform.position = new Vector3(3f, transform.position.y, transform.position.z);
+
+        if (this.transform.position.y > 8f)
+            transform.position = new Vector3(transform.position.x, 8f, transform.position.z);
+
+        if (this.transform.position.y < -8f)
+            transform.position = new Vector3(transform.position.x, -8f, transform.position.z);
+
+        Debug.Log(transform.position.x);
     }
 }
