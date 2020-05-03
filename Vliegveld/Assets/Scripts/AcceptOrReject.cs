@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AcceptOrReject : Button
 {
@@ -12,6 +13,8 @@ public class AcceptOrReject : Button
     public bool explodeBool;
     public bool badcheck;
 
+    private bool tempExplo = false;
+
     private float speed;
 
     public GameObject Bakje;
@@ -20,9 +23,9 @@ public class AcceptOrReject : Button
     public Animator planeAnim;
     public float timer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        speed = Time.deltaTime * 0.2f;
+        speed = 0;
         Manager = FindObjectOfType<StateManager>();
         Spawn = FindObjectOfType<Spawner>();
 
@@ -42,12 +45,19 @@ public class AcceptOrReject : Button
                 timer += Time.deltaTime;
                 if (timer > 2)
                 {
+                    speed += 0.005f * Time.deltaTime;
                     Plane.transform.position = new Vector3(Mathf.Lerp(Plane.transform.position.x, -12, speed), Mathf.Lerp(Plane.transform.position.y, 10, speed), 0);
                     Plane.transform.localScale = new Vector3(Mathf.Lerp(Plane.transform.localScale.x, 0, speed), Mathf.Lerp(Plane.transform.localScale.y, 0, speed), 1);
 
                     if(explodeBool == true && Plane.transform.position.y > 5)
                     {
                         planeAnim.SetTrigger("Explode");
+                        
+                        if (tempExplo == false)
+                        {
+                            Manager.PlaySound("Explode");
+                            tempExplo = true;
+                        }
                     }
 
                     if (Plane.transform.localScale.x < 0.05f)
@@ -55,6 +65,7 @@ public class AcceptOrReject : Button
                         planeAnim.SetTrigger("Normal");
                         flyBool = false;
                         timer = 0;
+                        speed = 0;
                     }
                 }
             }
@@ -63,12 +74,16 @@ public class AcceptOrReject : Button
             {
                 Plane.transform.position = new Vector3(-15, 0, 0);
                 Plane.transform.localScale = new Vector3(1, 1, 1);
+
+                if(explodeBool == true)
+                SceneManager.LoadScene(sceneName: "EndScene");
             }
         }
     }
 
     private void OnMouseDown()
     {
+        Manager.PlaySound("Button");
         if (Manager.chosen == false && Manager.CurrentBag != null)
         {
             int temp = Bakje.transform.childCount;
@@ -95,6 +110,7 @@ public class AcceptOrReject : Button
                 Manager.planeExplodes = true;
                 explodeBool = true;
                 flyBool = true;
+                Manager.PlaySound("Plane");
             }
 
             if (badcheck == false && this.gameObject.tag == "Good")
@@ -102,6 +118,7 @@ public class AcceptOrReject : Button
                 Manager.points += 1;
                 flyBool = true;
                 explodeBool = false;
+                Manager.PlaySound("Plane");
             }
 
             if(badcheck == true && this.gameObject.tag == "Bad")
@@ -116,6 +133,7 @@ public class AcceptOrReject : Button
 
             Manager.accept = GoodOrNot;
             Manager.chosen = true;
+            Manager.PlaySound("Away");
         }
     }
 

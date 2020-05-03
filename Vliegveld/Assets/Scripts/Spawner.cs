@@ -17,6 +17,10 @@ public class Spawner : Button
 
     public float clientTimer;
     public float itemTimer;
+
+    public float bagSpeed;
+    public float personSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +33,15 @@ public class Spawner : Button
     {
         Press();
         if (currentPerson != null && Manager.bagPersonBool == false)
-            currentPerson.transform.position = new Vector3(Mathf.Lerp(currentPerson.transform.position.x, 0, Time.deltaTime * 5), currentPerson.transform.position.y, currentPerson.transform.position.z);
+        {
+            personSpeed += 0.1f * Time.deltaTime;
+            currentPerson.transform.position = new Vector3(Mathf.Lerp(currentPerson.transform.position.x, 0, personSpeed), currentPerson.transform.position.y, currentPerson.transform.position.z);
+        }
 
         if (currentBag != null)
         {
-            currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, Time.deltaTime * 2), currentBag.transform.position.z);
+            bagSpeed += 0.1f * Time.deltaTime;
+            currentBag.transform.position = new Vector3(currentBag.transform.position.x, Mathf.Lerp(currentBag.transform.position.y, 0, bagSpeed), currentBag.transform.position.z);
 
             if (currentBag.transform.position.y < 2)
             {
@@ -52,6 +60,7 @@ public class Spawner : Button
 
             if (clientTimer > 2)
             {
+                Manager.PlaySound("Steps");
                 spawnPerson();
                 clientTimer = 0;
             }
@@ -76,7 +85,8 @@ public class Spawner : Button
 
     public void SpawnItems()
     {
-
+        Manager.PlaySound("Enter");
+        bagSpeed = 0;
         Manager.zetTerugNaarNormaal();
         int boxnmbr = rnd.Next(0, Bags.Length);
         GameObject Bag = Instantiate(Bags[boxnmbr], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
@@ -97,6 +107,7 @@ public class Spawner : Button
 
     public void spawnPerson()
     {
+        personSpeed = 0;
         Manager.beweegMensenOfzo();
         int peopleNmbr = rnd.Next(0, People.Length);
         GameObject Person = Instantiate(People[peopleNmbr], new Vector3(40, 0, 0), new Quaternion(0, 0, 0, 0));

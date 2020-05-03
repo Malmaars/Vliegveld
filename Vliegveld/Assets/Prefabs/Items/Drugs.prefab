@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4306037825954739081}
   m_Layer: 0
   m_Name: Drugs
-  m_TagString: Bad
+  m_TagString: Good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

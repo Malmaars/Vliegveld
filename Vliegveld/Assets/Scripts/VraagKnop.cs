@@ -83,6 +83,10 @@ public class VraagKnop : Button
             clicked = true;
         }
     }
+    private void OnMouseDown()
+    {
+        Manager.PlaySound("Button");
+    }
 
     private void OnMouseDrag()
     {

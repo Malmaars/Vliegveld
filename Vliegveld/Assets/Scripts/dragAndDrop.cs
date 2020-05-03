@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dragAndDrop : MonoBehaviour
 {
+    StateManager manager;
     private bool dragging;
 
     public GameObject Poof;
@@ -14,6 +15,7 @@ public class dragAndDrop : MonoBehaviour
     {
         Poof = transform.GetChild(1).gameObject;
         anim = Poof.GetComponent<Animator>();
+        manager = FindObjectOfType<StateManager>();
     }
 
     private void OnMouseDown()
@@ -48,6 +50,7 @@ public class dragAndDrop : MonoBehaviour
         transform.localScale = new Vector3(1.5f, 1.5f, 1);
         transform.GetComponent<SpriteRenderer>().sortingOrder = -4;
         anim.SetTrigger("DoThePoof");
+        manager.PlaySound("Item");
     }
 
     // Update is called once per frame
@@ -57,18 +60,6 @@ public class dragAndDrop : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
-
-        if (this.transform.position.x > 16f)
-            transform.position = new Vector3(16f, transform.position.y, transform.position.z);
-
-        if (this.transform.position.x < 3f)
-            transform.position = new Vector3(3f, transform.position.y, transform.position.z);
-
-        if (this.transform.position.y > 8f)
-            transform.position = new Vector3(transform.position.x, 8f, transform.position.z);
-
-        if (this.transform.position.y < -8f)
-            transform.position = new Vector3(transform.position.x, -8f, transform.position.z);
 
         Debug.Log(transform.position.x);
     }
